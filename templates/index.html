@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Review</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Flashcard Review</h1>
+        
+        <label for="student_id">Select Student ID:</label>
+        <select id="student_id">
+            {% if students %}
+                {% for student in students %}
+                    <option value="{{ student }}">{{ student }}</option>
+                {% endfor %}
+            {% else %}
+                <option disabled>No students available</option>
+            {% endif %}
+        </select>
+        
+        <button onclick="startSession()">Start Session</button>
+
+        <div id="flashcard" style="display:none;">
+            <p><strong>Mistake Type:</strong> <span id="mistake_type"></span></p>
+            <p><strong>Original Sentence:</strong> <span id="original_sentence"></span></p>
+            <p><strong>Corrected Sentence:</strong> <span id="corrected_sentence"></span></p>
+            <p><strong>Review Count:</strong> <span id="review_count"></span></p>
+            <button id="review_btn" onclick="reviewFlashcard()">Mark as Reviewed</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
